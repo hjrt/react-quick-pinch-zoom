@@ -490,8 +490,14 @@ var PinchZoom = /** @class */ (function (_super) {
   };
   PinchZoom.prototype._zoomTo = function (zoomFactor) {
     var _this = this;
-    var center = this._getCurrentZoomCenter();
     var startZoomFactor = this._zoomFactor;
+    var center;
+    if (zoomFactor < 1) {
+      center = this._getCurrentZoomCenter();
+    } else {
+      var rect = this._getContainerRect();
+      center = { x: rect.width / 2, y: rect.height / 2 };
+    }
     var updateProgress = function (progress) {
       var scaleFactor =
         startZoomFactor + progress * (zoomFactor - startZoomFactor);
