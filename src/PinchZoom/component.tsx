@@ -441,6 +441,22 @@ class PinchZoom extends React.Component<Props> {
     this._animate(updateFrame, { callback: () => this._sanitize(), duration });
   }
 
+  zoomIn(zoomFactor: number) {
+    this._zoomTo(zoomFactor);
+  };
+
+  private _zoomTo(zoomFactor: number) {
+    const center = this._getCurrentZoomCenter();
+    const startZoomFactor = this._zoomFactor;
+
+    const updateProgress = (progress: number) => {
+      const scaleFactor =
+        startZoomFactor + progress * (zoomFactor - startZoomFactor);
+      this._scaleTo(scaleFactor, center);
+    };
+    this._animate(updateProgress);
+  };
+
   private _scaleTo(zoomFactor: number, center: Point) {
     this._scale(zoomFactor / this._zoomFactor, center);
   }
