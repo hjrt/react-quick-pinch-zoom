@@ -449,7 +449,7 @@ class PinchZoom extends React.Component<Props> {
     const startZoomFactor = this._zoomFactor;
     let center: { x: number; y: number; };
 
-    if (zoomFactor < 1) {
+    if (zoomFactor < this._zoomFactor) {
       center = this._getCurrentZoomCenter() ;
     } else {
       const rect = this._getContainerRect();

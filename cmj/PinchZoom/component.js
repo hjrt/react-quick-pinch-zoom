@@ -492,7 +492,7 @@ var PinchZoom = /** @class */ (function (_super) {
     var _this = this;
     var startZoomFactor = this._zoomFactor;
     var center;
-    if (zoomFactor < 1) {
+    if (zoomFactor < this._zoomFactor) {
       center = this._getCurrentZoomCenter();
     } else {
       var rect = this._getContainerRect();
